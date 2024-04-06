@@ -1,20 +1,27 @@
 version: 0.2
 
 phases: 
-    install:
-        runtime-versions:
-            nodejs: latest
-        commands:
-            - echo "installing something"
-    pre_build:
-        commands: 
-            - echo "we are in the pre build phase"
-    build:
-        commands:
-            - echo "we are in the build block"
-            - echo "we will run some tests"
-            - grep -Fq "Congratulations" index.html
-    post_build:
-        commands:
-            - echo "we are in the post build phase"
-            
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - echo "installing something"
+
+  pre_test:
+    commands: 
+      - echo "we are in the pre test phase"
+
+  testing:
+    commands:
+      - echo "we are in the build block"
+      - echo "we will run some tests"
+      # Install Node.js packages required for testing
+      - npm install --global aspell
+      - aspell check index.html
+      # Install and run Tidy for HTML validation
+      - npm install --global tidy-html5
+      - tidy -q -e index.html
+
+  post_test:
+    commands:
+      - echo "we are in the post test phase"
