@@ -15,11 +15,10 @@ phases:
     commands:
       - echo "we are in the build block"
       - echo "we will run some tests"
-      # Install Node.js packages required for testing
-      - npm install --global aspell
+      - apt-get update
+      - apt-get install -y aspell
+      - apt-get install -y tidy
       - aspell check index.html
-      # Install and run Tidy for HTML validation
-      - npm install --global tidy-html5
       - tidy -q -e index.html
 
   post_build:
