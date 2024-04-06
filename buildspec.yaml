@@ -15,9 +15,8 @@ phases:
     commands:
       - echo "we are in the build block"
       - echo "we will run some tests"
-      - apt-get update
-      - apt-get install -y aspell
-      - apt-get install -y tidy
+      - yum install -y aspell
+      - yum install -y tidy
       - aspell check index.html
       - tidy -q -e index.html
 
