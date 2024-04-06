@@ -15,10 +15,10 @@ phases:
     commands:
       - echo "we are in the build block"
       - echo "we will run some tests"
-      - yum install -y aspell
+      - yum install -y lighthouse
       - yum install -y tidy
-      - aspell check index.html
       - tidy -q -e index.html
+      - lighthouse index.html
 
   post_build:
     commands:
